@@ -35,7 +35,7 @@ String getMsg() {
     if (bmp.begin()) {
         Serial.println(F("BMP180 init success"));
     } else {
-        Serial.println(F("BMP180 init fail\n\n"));
+        Serial.println(F("BMP180 init fail"));
         while(1);
     }
     
@@ -51,28 +51,28 @@ String getMsg() {
         if (status != 0) {
 
             Serial.print("T1: ");
-            Serial.println(T1,2);
+            Serial.println(T1, 2);
             status = bmp.startPressure(3);
 
             if (status != 0) {
 
                 delay(status);
-                status = bmp.getPressure(P,T1);
+                status = bmp.getPressure(P, T1);
                 
                 if (status != 0) {
                     
                     Serial.print("P: ");
-                    Serial.println(P/1.33322,1);
+                    Serial.println(P/1.33322, 1);
                     
                     H = dht.readHumidity();
                     T2 = dht.readTemperature();
 
                     if (!isnan(H) && !isnan(T2) && !isnan(T1) && !isnan(P)) {
                         Serial.print("T2: ");
-                        Serial.println(T2,2);
+                        Serial.println(T2, 2);
                         Serial.print("H: ");
-                        Serial.println(H,2);
-                        return String(round((T1+T2)/2)) + String(" ") + String(round(P/1.33322)) + String(" ") + String(round(H));
+                        Serial.println(H, 2);
+                        return String(round((T1+T2)/2)) + String(" ") + String(round(P/1.33322)) + String(" ") + String(round(H)) + String("/n");
                     }
                     
                 }
@@ -87,35 +87,26 @@ String getMsg() {
 
 void logSensorReading() {
     
-    // Initialize the CC3000.
     Serial.println(F("\nInitializing CC3000..."));
     if (!cc3000.begin()) {
         Serial.println(F("Couldn't begin()! Check your wiring?"));
         while(1);
     }
-    
-    wdt_reset();
 
-    // Connect to AP.
+    Serial.println(F("Connect to AP..."));
     if (!cc3000.connectToAP(WLAN_SSID, WLAN_PASS, WLAN_SECURITY)) {
         Serial.println(F("Failed!"));
         while(1);
     }
     Serial.println(F("Connected!"));
-    
-    wdt_reset();
 
-    // Wait for DHCP to be complete.
     Serial.println(F("Request DHCP"));
     while (!cc3000.checkDHCP()) {
-        wdt_reset();
         delay(100);
     }    
 
     Serial.print(F("Sending measurement... "));
     Adafruit_CC3000_Client server = cc3000.connectTCP(ip, SERVER_PORT);
-    
-    wdt_reset();
     
     if (server.connected()) {
         server.println(getMsg());
@@ -123,24 +114,17 @@ void logSensorReading() {
     } else {
         Serial.println(F("Error sending measurement!"));
     }
-    Serial.println(F("done."));
+    Serial.println(F("Done!"));
 
     delay(500);
 
     server.close();
     
-    wdt_reset();
-    
     if (cc3000.checkConnected()) {
         cc3000.disconnect();
     }
     
-    wdt_reset();
-
-    // Wait for the CC3000 to finish disconnecting before
-    // continuing.
     while (cc3000.checkConnected()) {
-        wdt_reset();
         delay(100);
     }
     
@@ -152,6 +136,7 @@ void setup(void) {
     
     Serial.begin(115200);
     ip = cc3000.IP2U32(SERVER_IP);
+    
     Serial.println(F("Setup complete."));
     
     logSensorReading();
