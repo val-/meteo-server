@@ -1,0 +1,82 @@
+
+<table id="mainTable">
+    <tr class="temp-row">
+        <td class="cell-left">
+            <div class="cell-inner">
+                <svg class="svg-symbol-temp">
+                    <use xlink:href="#svg-symbol-temp"></use>
+                </svg>
+                <span class="text">{{current.t}}&deg;</span>
+            </div>
+        </td>
+        <td class="cell-center">
+            <div class="cell-inner">
+                <svg class="svg-graph">
+                    <polyline points="{{#each records:i}}{{ scale.x(i) }},{{ scale.yTemp(t) }}{{' '}}{{/each}}"
+                            style="fill:none;stroke:white;stroke-width:1" />
+                    <line x1='0' x2='480' y1='40' y2='40' style='stroke:rgba(255,255,255,0.3);stroke-width:1'/>
+                    
+                </svg>
+            </div>
+        </td>
+        <td class="cell-right">
+            <div class="cell-inner">
+                <span class="min-text">{{min.t}}&deg;</span>
+                <span class="max-text">{{max.t}}&deg;</span>
+            </div>
+        </td>
+    </tr>
+    <tr class="humidity-row">
+        <td class="cell-left">
+            <div class="cell-inner">
+                <svg class="svg-symbol-humidity">
+                    <use xlink:href="#svg-symbol-humidity"></use>
+                </svg>
+                <span class="text">{{current.h}}<small>%</small></span>
+            </div>
+        </td>
+        <td class="cell-center">
+            <div class="cell-inner">
+                <svg class="svg-graph">
+                    <polyline points="{{#each records:i}}{{ scale.x(i) }},{{ scale.yHumidity(h) }}{{' '}}{{/each}}"
+                            style="fill:none;stroke:white;stroke-width:1" />
+                    <line x1='0' x2='480' y1='40' y2='40' style='stroke:rgba(255,255,255,0.3);stroke-width:1'/>
+                    
+                </svg>
+            </div>
+        </td>
+        <td class="cell-right">
+            <div class="cell-inner">
+                <span class="min-text">{{min.h}}<small>%</small></span>
+                <span class="max-text">{{max.h}}<small>%</small></span>
+            </div>
+        </td>
+    </tr>
+    <tr class="pressure-row">
+        <td class="cell-left">
+            <div class="cell-inner">
+                <svg class="svg-symbol-manometer">
+                    <use xlink:href="#svg-symbol-manometer"></use>
+                </svg>
+                <span class="text">{{current.p}}</span>
+            </div>
+        </td>
+        <td class="cell-center">
+            <div class="cell-inner">
+                <svg class="svg-graph">
+                    <polyline points="{{#each records:i}}{{ scale.x(i) }},{{ scale.yPressure(p) }}{{' '}}{{/each}}"
+                            style="fill:none;stroke:white;stroke-width:1" />
+                    <line x1='0' x2='480' y1='40' y2='40' style='stroke:rgba(255,255,255,0.3);stroke-width:1'/>
+                    
+                </svg>
+            </div>
+        </td>
+        <td class="cell-right">
+            <div class="cell-inner">
+                <span class="min-text">{{min.p}}</span>
+                <span class="max-text">{{max.p}}</span>
+            </div>
+        </td>
+    </tr>
+</table>
+

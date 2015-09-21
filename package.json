@@ -1,0 +1,13 @@
+{
+    "name": "meteo-server",
+    "version": "0.0.1",
+    "description": "Home meteo-server - listen tcp and http",
+    "preferGlobal": "true",
+    "bin": { 
+        "meteo-server": "meteo-server.js"
+    },
+    "author": "Valentin Agafonov",
+    "engines": { 
+        "node": "*" 
+    }
+}

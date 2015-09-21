@@ -1,0 +1,30 @@
+{
+  "name": "Meteo web-client",
+  "version": "0.0.1",
+  "author": "Valentin Agafonov",
+  "description": "Nice application for home meteostation",
+  "private": true,
+  "dependencies": {
+    "moment": "^2.10.6",
+    "normalize.less": "latest",
+    "ractive": "latest",
+    "underscore": "latest",
+    "zepto-browserify": "latest"
+  },
+  "devDependencies": {
+    "gulp": "latest",
+    "rimraf": "latest",
+    "browserify": "latest",
+    "ractivate": "latest",
+    "vinyl-buffer": "latest",
+    "vinyl-source-stream": "latest",
+    "gulp-uglify": "latest",
+    "gulp-sourcemaps": "latest",
+    "gulp-less": "latest",
+    "gulp-css-base64": "latest",
+    "gulp-svg-symbols": "latest",
+    "gulp-jade": "latest",
+    "gulp-watch": "latest",
+    "browser-sync": "latest"
+  }
+}

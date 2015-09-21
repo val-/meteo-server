@@ -1,0 +1,97 @@
+@import "../../node_modules/normalize.less/normalize.less";
+@import "../fonts/osans/osans.css";
+@import "../img/svg-symbols.css";
+@import "./variables.less";
+
+html, body {
+    width: 100%;
+    height: 100%;    
+}
+
+body {
+    font-family: @font-family;
+    font-size: @font-size-base;
+    color: @text-color;
+    background: url(../img/wallpapers/autumn.jpg) no-repeat center center;
+}
+
+
+#app {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    width: @base-width;
+    margin-top: -180px;
+    margin-left: @base-width / -2;
+    
+    #mainTable {
+        width: 100%;
+        
+        .cell-inner {
+            background: rgba(1,1,1,0.4);
+            box-sizing: border-box;
+            position: relative;
+            padding: 10px;
+            margin: 10px 2px;
+            height: 100px;
+            
+            svg.svg-symbol-temp {
+                width: 40px;
+                height: 40px;
+                position: absolute;
+                left: 10px; top: 30px;
+            }
+            
+            svg.svg-symbol-humidity {
+                width: 30px;
+                height: 30px;
+                position: absolute;
+                left: 10px; top: 33px;
+            }
+            
+            svg.svg-symbol-manometer {
+                width: 28px;
+                height: 28px;
+                position: absolute;
+                left: 10px; top: 34px;
+            }
+            
+            span.text {
+                position: absolute;
+                left: 45px; top: 30px;            
+            }
+            span.max-text {
+                position: absolute;
+                right: 10px; top: 5px;
+                font-size: @font-size-small;
+            }
+            span.min-text {
+                position: absolute;
+                right: 10px; top: 70px;
+                font-size: @font-size-small;
+            }
+            
+            svg.svg-graph {
+                width: 100%;
+                height: 80px;
+            }
+            
+        }
+        
+        .cell-left {
+            .cell-inner {
+                width: 100px;
+            }
+        }
+        .cell-center {
+            width: 100%;
+        }
+        .cell-right {
+            .cell-inner {
+                width: 50px;
+            }
+        }
+        
+    }    
+    
+}
