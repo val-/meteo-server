@@ -1,11 +1,13 @@
+#include <LowPower.h>
+#include <avr/wdt.h>
 #include <Adafruit_CC3000.h>
 #include <SPI.h>
-#include <avr/wdt.h>
 #include <Wire.h>
 #include <SFE_BMP180.h>
 #include <DHT.h>
 
 #define DHT_PIN                 2
+#define POWER_PIN               7
 #define ADAFRUIT_CC3000_IRQ     3
 #define ADAFRUIT_CC3000_VBAT    5
 #define ADAFRUIT_CC3000_CS      10
@@ -14,7 +16,7 @@
 #define WLAN_PASS               "777777777"
 #define WLAN_SECURITY           WLAN_SEC_WPA2
 
-#define LOGGING_INTERVAL        180
+#define LOGGING_INTERVAL        225
 #define SERVER_IP               192, 168, 1, 93
 #define SERVER_PORT             8000
 
@@ -139,24 +141,27 @@ void setup(void) {
     
     Serial.println(F("Setup complete."));
     
+    pinMode(POWER_PIN, OUTPUT);
+    digitalWrite(POWER_PIN, HIGH);
+    delay(1000);
+    
     logSensorReading();
     
-    wdt_enable(WDTO_8S);
+    digitalWrite(POWER_PIN, LOW);
     
 }
 
 void loop(void) {
     
     Serial.print(F("Counter: "));
-    Serial.println(counter);
-    
+    Serial.println(counter);        
     counter++;
-    delay(5000);
     
     if (counter < LOGGING_INTERVAL) {
-        wdt_reset();
+        LowPower.powerDown(SLEEP_8S, ADC_OFF, BOD_OFF);
+    } else {
+        wdt_enable(WDTO_8S);
     }
-    
     
 }
 
