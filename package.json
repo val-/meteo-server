@@ -2,6 +2,18 @@
     "name": "meteo-server",
     "version": "0.0.1",
     "description": "Home meteo-server - listen tcp and http",
+    "dependencies": {
+        "express": "^4.13.3",
+        "serve-static": "^1.10.0",
+        "moment": "^2.10.6",
+        "jsonfile": "^2.2.2",
+        "touch": "^1.0.0"
+    },
+    "repository": { 
+        "type" : "git", 
+        "url" : "https://github.com/val-/meteo-server.git"
+    },
+    "license": "GPL-3.0",
     "preferGlobal": "true",
     "bin": { 
         "meteo-server": "meteo-server.js"

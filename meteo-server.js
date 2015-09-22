@@ -4,4 +4,5 @@
 console.log('Meteo server started!');
 
 require('./tcp-listener.js');
+require('./http-listener.js');
 
