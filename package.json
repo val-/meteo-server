@@ -6,8 +6,7 @@
         "express": "^4.13.3",
         "serve-static": "^1.10.0",
         "moment": "^2.10.6",
-        "jsonfile": "^2.2.2",
-        "touch": "^1.0.0"
+        "jsonfile": "^2.2.2"
     },
     "repository": { 
         "type" : "git", 

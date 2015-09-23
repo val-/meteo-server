@@ -5,7 +5,7 @@
 var net = require('net'),
     moment = require('moment'),
     jsonfile = require('jsonfile'),
-    touch = require('touch'),
+    fs = require('fs'),
     server = net.createServer(function (socket) {
       
         socket.setEncoding('utf8');
@@ -26,10 +26,9 @@ var net = require('net'),
                     h: rec[2]
                 };
 
-                touch.sync(fileName);
-                try {
+                if (fs.existsSync(fileName)) {
                     logObj = jsonfile.readFileSync(fileName);
-                } catch (e) {}
+                }
                 logObj.records.push(rec);
                 jsonfile.writeFileSync(fileName, logObj);
 
