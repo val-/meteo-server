@@ -21,6 +21,9 @@ var template = require('./templates/main.html');
             
     $(function () {
         
+        $('body').css('background', 'url(../img/wallpapers/autumn' + (Math.round(Math.random() * 4) + 1) + '.jpg) no-repeat center center');
+
+        
         
         var todayStr = moment().format('DD-MM-YYYY'),
             yesterdayStr = moment().subtract(1, 'days').format('DD-MM-YYYY'),
@@ -35,7 +38,7 @@ var template = require('./templates/main.html');
                     return 80 - 0.8 * h;
                 },
                 yPressure: function (p) {
-                    return 40 - (750 - p) * 2;
+                    return 40 - (p - 750) * 2;
                 }
             };
         
